@@ -1,5 +1,7 @@
+import Button from "../components/Button/Button"
 import Footer from "../components/Footer/Footer"
 import Header from "../components/Header/Header"
+
 
 function Home() {
 
@@ -7,6 +9,7 @@ function Home() {
     <>
     <Header/>
     <p>Home</p>
+      <Button buttonStyle="primary" arrow>ola</Button>
     <Footer/>
     </>
   )
