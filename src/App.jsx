@@ -1,5 +1,5 @@
 
-import { BrowserRouter as  Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Routes} from 'react-router-dom'
 
 //Pages
 import Home from './pages/home'
@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Routes>
        <Route path="/" element={ <Home/>}></Route>
-       <Route path="/about" element={<> <About/> <Link to="/">navegar</Link></>}></Route>
+       <Route path="/about" element={<About/> }></Route>
        <Route path="/projects" element={<Projects/>}></Route>
        <Route path="/contact" element={ <Contact/>}></Route>
 
