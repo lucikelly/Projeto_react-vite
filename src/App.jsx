@@ -1,18 +1,25 @@
 
-import { BrowserRouter as  Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as  Router, Route, Routes} from 'react-router-dom'
 
+//Pages
+import Home from './pages/home'
+import About from './pages/About'
+import Projects from './pages/Products'
+import Contact from './pages/Contact'
 
+import ScrollToTop from './utils/ScrollToTop'
 
 function App() {
  
 
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
-       <Route path="/" element={ <><h1>Home</h1></>}></Route>
-       <Route path="/about" element={ <><h1>About</h1><Link to="/">navegar</Link></>}></Route>
-       <Route path="/projects" element={ <><h1>Projects</h1></>}></Route>
-       <Route path="/contact" element={ <><h1>Contact</h1></>}></Route>
+       <Route path="/" element={ <Home/>}></Route>
+       <Route path="/about" element={<About/> }></Route>
+       <Route path="/projects" element={<Projects/>}></Route>
+       <Route path="/contact" element={ <Contact/>}></Route>
 
       </Routes>
     </Router>

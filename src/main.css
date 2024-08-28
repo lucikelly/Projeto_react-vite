@@ -10,7 +10,7 @@ body{
   background-color: white;
 }
 
-a{
+.a {
   text-decoration: none;
 
 }
@@ -41,9 +41,31 @@ a{
   color: #F6F6F6;
 }
 
+.gray-1-color {
+  color: #4D5053;
+}
+/*TYPOGRAPHY*/
+h1, h2, h3, h4, h5, h6{
+  font-family: "DM Serif Display";
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 2.5px;
+}
+
+p{
+  line-height: 150%;
+}
+
+.txt-center{
+  text-align: center;
+}
+
+
 /*GRID*/
 
 .container {
+  box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
   max-width: 1140px;
