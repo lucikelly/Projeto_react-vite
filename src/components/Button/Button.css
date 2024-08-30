@@ -37,6 +37,13 @@
   color: #0c70f2;
 }
 
+.button.unstyled {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .button.outline:hover {
   background-color: #0c70f2;
   color: white;
