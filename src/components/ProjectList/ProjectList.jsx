@@ -1,17 +1,35 @@
 import { useState, useEffect, useContext } from 'react'
 import { getApiData } from '../../services/apiServices'
 import './ProjectList.css'
-
+import Button from "../Button/Button"
 
 import likeOk from '../../assets/like_ok.svg'
 import gostei from '../../assets/gostar.svg'
 
 import { AppContext } from "../../contexts/AppContext"
+import { json } from 'react-router-dom'
 
 
 function ProjectList (){
+  
   const [projects, setProjects] = useState()
+  const [favProjects, setFavProjects] = useState([])
   const appContext = useContext(AppContext)
+
+  const savedFavProjects = (id) => {
+    setFavProjects((prevFavProjects) => {
+      if(prevFavProjects.includes(id)){
+        const filterArray = prevFavProjects.filter((projectId) => projectId !== id)
+        sessionStorage.setItem('favProjects', JSON.stringify(filterArray))
+        return prevFavProjects.filter((projectId)=> projectId !== id )
+      } else {
+        sessionStorage.setItem('favProjects', JSON.stringify([...prevFavProjects, id]))
+        return [...prevFavProjects, id]
+      }
+
+    })
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try{
@@ -22,6 +40,13 @@ function ProjectList (){
       }
     }
     fetchData()
+  },[])
+
+  useEffect(()=>{
+    const savedFavProjects = JSON.parse(sessionStorage.getItem('favProjects'))
+    if(savedFavProjects){
+      setFavProjects(savedFavProjects)
+    }
   },[])
 
   return(
@@ -41,7 +66,10 @@ function ProjectList (){
                 > </div>
                 <h3 >{project.title}</h3>
                 <p>{project.subtitle}</p>
-                <img src={likeOk} height="20px" />
+                <Button buttonStyle="unstyled" onClick={() => savedFavProjects(project.id)}>
+                  <img src={favProjects.includes(project.id) ? likeOk : gostei} height="20px" />
+                </Button>
+                
               </div>
             )) 
           : null
@@ -49,6 +77,7 @@ function ProjectList (){
   
         </div>
      </div>
+
 
   )
 }
