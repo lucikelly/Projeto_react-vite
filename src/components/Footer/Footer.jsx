@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './Footer.css'
 import { Link } from "react-router-dom"
 
-import LogoDNC from "../../assets/LogoDNC.svg"
+import LogoDNC from "../../assets/Logodnc.svg"
 import facebook from '../../assets/facebook.svg'
 import twitter from '../../assets/twitter.svg'
 import linkedin from '../../assets/linkedin.svg'

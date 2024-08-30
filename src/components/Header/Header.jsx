@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
-import LogoDNC from "../../assets/LogoDNC.svg"
+import LogoDNC from "../../assets/Logodnc.svg"
 import './Header.css'
 import Button from "../Button/Button"
 import { AppContext } from "../../contexts/AppContext"
