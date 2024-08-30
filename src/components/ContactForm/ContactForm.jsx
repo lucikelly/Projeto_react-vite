@@ -11,12 +11,36 @@ function ContactForm (){
     message:''
   })
   const [isFormValid, setIsFormValid] = useState(false)
+  const [formSubmitLoading, setFromSubmitLoading] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  
+
 
   const handleSumit = async (e) => {
     e.preventDefault()
     if (isFormValid){
-      null
-    }
+      setFromSubmitLoading(true)
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json'
+          }, 
+          body: JSON.stringify({...formData, access_key: "3d072804-00b0-42c3-8f1c-c15594108090"})
+        })
+
+        if(response.ok) {
+          setFormSubmitted(true)
+        }else {
+          alert('Erro ao Enviar !')
+        }
+      } catch (e) {
+        alert('Erro: ', e)
+      } finally {
+        setFromSubmitLoading(false)
+      }
+
+    } 
   }
 
   useEffect(()=>{
@@ -45,7 +69,7 @@ function ContactForm (){
     <div className='container'>
       <div className='contact-form d-flex fd-column al-center'>
         <h2> We love meeting new people and helping them.</h2>
-        <form >
+        <form onSubmit={handleSumit}>
           <div className="d-flex form-group">
             <input
               className="form-input"
@@ -81,7 +105,8 @@ function ContactForm (){
           </div>
           
           <div className="al-center d-flex jc-end form-group">
-              <Button type="submit" buttonStyle="secudary" disabled={!isFormValid}>
+              {formSubmitted && <p className='text-primary'>Enviado com Sucesso</p>}
+              <Button type="submit" buttonStyle="secudary" disabled={!isFormValid || formSubmitLoading}>
                 Enviar
               </Button>
             </div>
